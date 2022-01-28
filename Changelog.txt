@@ -1,0 +1,32 @@
+0.0.3--------
+Still in development (What, you really expected some insights?
+
+0.0.2--------
++ Rewrote Framework
++ Added Navagaton Bar - No more relying on right-click
+= Still a no-cookie chromium-based web browser
+- Removed a chunk of time in my life that I could have used elsewhere
+- Removed Roghly 3 MB of storage space needed
+- Removed Download when I rewrote framework
++ Added Snek to play when offline
++ Added Github Repository
+
+--
+0.0.1 - First Release
++ Built Framework
+- Removed Cookies
++ added Chromium Engine
++ added Python Code
++ Compiled using pyinstaller
++ Released on itch.io
+- Removed the ability to store data
+- Removed a chunk of time in my life that I could have used elsewhere 
+--
+0.0.0 - Something
++ added the Idea of creating a Web Browser
++ added The Planning of it
++ added Python to source computer
++ used code fragments to create a print-debugging prototype
+- Removed some time of my life that I will never get back
+--
+End
