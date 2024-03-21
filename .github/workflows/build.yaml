@@ -1,0 +1,54 @@
+name: Build Executable
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6  # Adjust to your Python version
+
+      - name: Install dependencies
+        run: |
+          pip install PyQt5 PyQtWebEngine pyinstaller
+
+      - name: Build executable
+        run: |
+          pyinstaller --onefile --windowed --target=win32 v1.py
+
+    - name: Generate Timestamp
+      id: generate_timestamp
+      run: |
+          $timeStamp = Get-Date -Format "yyyyMMdd-HHmmss"
+          echo "::set-output name=timestamp::$timeStamp"
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: github-actions
+        release_name: BunnyPad - Latest Snapshot - ${{ steps.generate_timestamp.outputs.timestamp }} - win_amd64
+        draft: false
+        prerelease: true
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/v1.exe
+        asset_name: version1-${{ steps.date.outputs.date }}.exe
+        asset_content_type: application/octet-stream
