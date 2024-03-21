@@ -29,7 +29,7 @@ jobs:
 
     - name: Build binary
       run: |
-        pyinstaller --noconfirm --onefile --target=win32 --windowed v1.py
+        pyinstaller --noconfirm --onefile --target-arch=win32 --windowed v1.py
     - name: Generate Timestamp
       id: generate_timestamp
       run: |
@@ -41,8 +41,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: github-actions
-        release_name: Version 1 - ${{ steps.generate_timestamp.outputs.timestamp }}
+        tag_name: github-actions-i386-latest
+        release_name: Version 1 - ${{ steps.generate_timestamp.outputs.timestamp }} - win_i386
         draft: false
         prerelease: False
 
